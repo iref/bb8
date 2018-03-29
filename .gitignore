@@ -107,3 +107,6 @@ days/91-93-sqlalchemy/demo/persistent_rps_starter/.vscode/settings.json
 rock_paper_scissors.sqlite
 
 .pytest_cache/
+
+# Betamax cassettes
+tests/cassettes/
