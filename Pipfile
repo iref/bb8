@@ -7,10 +7,13 @@ name = "pypi"
 
 [packages]
 
+requests = "*"
 
 
 [dev-packages]
 
+pytest = "*"
+betamax = "*"
 
 
 [requires]
