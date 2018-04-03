@@ -109,4 +109,4 @@ rock_paper_scissors.sqlite
 .pytest_cache/
 
 # Betamax cassettes
-tests/cassettes/
+tests/cassettes/*.json
