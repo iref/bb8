@@ -14,15 +14,23 @@ class SWDestinyDBResource(object):
         pass
 
     def all(self, **params):
-        uri = f"{BASE_URL}/{self.location}"
+        uri = self._create_uri()
         return requests.get(uri, params=params)
 
     def fetch(self, key, **params):
         pass
 
+    def _create_uri(self):
+        if self.location.startswith('/'):
+            uri = f"{BASE_URL}{self.location}"
+        else:
+            uri = f"{BASE_URL}/{self.location}"
+        return uri
+
+
 
 class Cards(SWDestinyDBResource):
-    location = "/card"
+    location = "/cards"
 
 
 class Decklists(SWDestinyDBResource):

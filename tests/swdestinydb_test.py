@@ -10,6 +10,5 @@ def test_get_all_cards(betamax_recorder):
         resp = cards.all()
 
 
-    print(resp.json())
     assert resp.status_code == 200
     assert len(resp.json()) > 0
