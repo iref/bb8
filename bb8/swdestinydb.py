@@ -4,42 +4,26 @@ import requests
 BASE_URL = "https://swdestinydb.com/api/public"
 
 
-class SWDestinyDBResource(object):
-    """
-    This object represents a resource in SWDestinyDB API.
-    """
-    location = None
+class SWDestinyDBClient:
 
-    def __init__(self):
+    def __init__(self, base_url, format="json"):
+        self.base_url = base_url
+        self.format = format
+
+    def get_card(self, key, format="json"):
         pass
 
-    def all(self, **params):
-        uri = self._create_uri()
-        return requests.get(uri, params=params)
-
-    def fetch(self, key, **params):
+    def get_cards(self, set_code=None):
         pass
 
-    def _create_uri(self):
-        if self.location.startswith('/'):
-            uri = f"{BASE_URL}{self.location}"
-        else:
-            uri = f"{BASE_URL}/{self.location}"
-        return uri
+    def get_decklist(self, key):
+        pass
 
+    def get_decklists(self, date):
+        pass
 
+    def get_formats(self):
+        pass
 
-class Cards(SWDestinyDBResource):
-    location = "/cards"
-
-
-class Decklists(SWDestinyDBResource):
-    pass
-
-
-class Formats(SWDestinyDBResource):
-    pass
-
-
-class Sets(SWDestinyDBResource):
-    pass
+    def get_sets(self):
+        pass
