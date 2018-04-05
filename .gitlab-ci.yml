@@ -22,6 +22,7 @@ pages:
     - pipenv run make html
     - mv _build/html ../public
   artifacts:
-    - public
+    paths:
+      - public
   only:
     - master
