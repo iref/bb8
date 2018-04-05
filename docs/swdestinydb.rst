@@ -1,4 +1,4 @@
-bb8.swdestinydb
+SWDestinyDB module
 ===========================
 
 .. automodule:: bb8.swdestinydb

@@ -17,13 +17,13 @@ class SWDestinyDBClient:
     """API client for StarWars Destiny DB.
 
     Supports only publicly available endpoints.
-    See https://swdestinydb.com/api/docs for more details.
+    See `official docs <https://swdestinydb.com/api/docs>`_ for more details.
     
-    Args:
-        base_url (string): The url where api resources can be found. 
-            (default: https://swdestinydb.com/api/public)
-        format (string): The expected output format. (default: json)
-        session (obj): The HTTP session to communicate with API (default: requests.Session())
+    :param str base_url: The url where api resources can be found. 
+                         (default: https://swdestinydb.com/api/public)
+    :param str format:  The expected output format. (default: json)
+    :param obj session: The HTTP session to communicate with API 
+                        (default: requests.Session())
     """
 
     def __init__(self, base_url=None, format="json", session=None):
@@ -34,13 +34,10 @@ class SWDestinyDBClient:
     def get_card(self, key):
         """Gets card with given key.
 
-        See https://swdestinydb.com/api/doc#get--api-public-card-{card_code}.{_format} for more details.
+        See `card docs <https://swdestinydb.com/api/doc#get--api-public-card-{card_code}.{_format}>`_ for more details.
 
-        Args:
-            key (string): The card identifier
-
-        Returns:
-            API response object
+        :param str key: The card identifier
+        :return: The API response object
         """
         uri = "{}/card/{}.{}".format(self.base_url, key, self.format)
         return self.session.get(uri)
@@ -49,13 +46,10 @@ class SWDestinyDBClient:
         """Gets all cards.
 
         If `set_code` is provided, it only returns cards from given set.
-        See https://swdestinydb.com/api/doc#get--api-public-cards- for more details.
+        See `cards docs <https://swdestinydb.com/api/doc#get--api-public-cards->`_ for more details.
 
-        Args:
-            set_code (string): The code of set cards should be from, e.g 'AW'. (default: None)
-
-        Returns:
-            API response object
+        :param str set_code: The code of set cards should be from, e.g 'AW'. (default: None)
+        :return: The API response object
         """
         set_path = ""
         if set_code:
@@ -67,13 +61,10 @@ class SWDestinyDBClient:
     def get_decklist(self, key):
         """Gets decklist by its identifier.
 
-        See https://swdestinydb.com/api/doc#get--api-public-decklist-{decklist_id}.{_format} for more details.
+        See `decklist docs <https://swdestinydb.com/api/doc#get--api-public-decklist-{decklist_id}.{_format}>`_ for more details.
 
-        Args:
-            key (string): The decklist identifier
-
-        Returns:
-            API response object
+        :param str key: The decklist identifier
+        :return: The API response object
         """
         uri = "{}/decklist/{}.{}".format(self.base_url, key, self.format)
         return self.session.get(uri)
@@ -81,10 +72,9 @@ class SWDestinyDBClient:
     def get_formats(self):
         """Gets all available competitive formats.
 
-        See https://swdestinydb.com/api/doc#get--api-public-formats- for more details.
+        See `format docs <https://swdestinydb.com/api/doc#get--api-public-formats->`_ for more details.
 
-        Returns:
-            API response object 
+        :return: The API response object 
         """
         uri = "{}/formats/".format(self.base_url)
         return self.session.get(uri)
@@ -92,10 +82,9 @@ class SWDestinyDBClient:
     def get_sets(self):
         """Gets all available sets.
 
-        See https://swdestinydb.com/api/doc#get--api-public-sets- for more details.
+        See `sets docs <https://swdestinydb.com/api/doc#get--api-public-sets->`_ for more details.
 
-        Returns:
-            API response object
+        :return: The API response object
         """
         params = {"_format": self.format}
         uri = "{}/sets/".format(self.base_url)
