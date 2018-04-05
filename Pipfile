@@ -14,6 +14,9 @@ requests = "*"
 
 pytest = "*"
 betamax = "*"
+sphinx = "*"
+sphinx-autobuild = "*"
+sphinx-rtd-theme = "*"
 
 
 [requires]
