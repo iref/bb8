@@ -1,7 +1,16 @@
 image: python:3.6
 
+before_script:
+  - pip install pipenv
+  - pipenv install --dev
+
 test:
+  stage: test
   script:
-    - pip install pipenv
-    - pipenv install --dev
     - pipenv run pytest tests
+
+docs:
+  stage: test
+  script:
+    - cd docs
+    - pipenv run make html
