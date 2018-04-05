@@ -14,3 +14,14 @@ docs:
   script:
     - cd docs
     - pipenv run make html
+
+pages:
+  stage: deploy
+  script:
+    - cd docs
+    - pipenv run make html
+    - mv _build/html ../public
+  artifacts:
+    - public
+  only:
+    - master
