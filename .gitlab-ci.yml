@@ -20,7 +20,7 @@ pages:
   script:
     - cd docs
     - pipenv run make html
-    - mv _build/html ../public
+    - mv _build/html/ public/
   artifacts:
     paths:
       - public
