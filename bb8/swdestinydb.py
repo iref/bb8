@@ -12,6 +12,10 @@ Example:
 """
 import requests
 
+class UnsupportedFormat(Exception):
+    """The exception thrown if requested format is not supported by client."""
+    pass
+
 
 class SWDestinyDBClient:
     """API client for StarWars Destiny DB.
@@ -31,17 +35,26 @@ class SWDestinyDBClient:
         self.format = format
         self.session = session or requests.Session()
 
+    def _request(self, uri):
+        response = self.session.get(uri)
+        response.raise_for_status()
+        if self.format == "json":
+            return response.json()
+        else:
+            raise UnsupportedFormat("Format: {} is not supported.".format(self.format))
+
     def get_card(self, key):
         """Gets card with given key.
 
         See `card docs <https://swdestinydb.com/api/doc#get--api-public-card-{card_code}.{_format}>`_ for more details.
 
         :param str key: The card identifier
-        :return: The API response object
+        :return: The Card with given key.
+        :rtype: dict
         """
         uri = "{}/card/{}.{}".format(self.base_url, key, self.format)
-        return self.session.get(uri)
-
+        return self._request(uri)
+    
     def get_cards(self, set_code=None):
         """Gets all cards.
 
@@ -49,14 +62,15 @@ class SWDestinyDBClient:
         See `cards docs <https://swdestinydb.com/api/doc#get--api-public-cards->`_ for more details.
 
         :param str set_code: The code of set cards should be from, e.g 'AW'. (default: None)
-        :return: The API response object
+        :return: The list of found cards
+        :rtype: list(dict)
         """
         set_path = ""
         if set_code:
             set_path = set_code + "." + self.format
 
         uri = "{}/cards/{}".format(self.base_url, set_path)
-        return self.session.get(uri)
+        return self._request(uri)
 
     def get_decklist(self, key):
         """Gets decklist by its identifier.
@@ -64,28 +78,28 @@ class SWDestinyDBClient:
         See `decklist docs <https://swdestinydb.com/api/doc#get--api-public-decklist-{decklist_id}.{_format}>`_ for more details.
 
         :param str key: The decklist identifier
-        :return: The API response object
+        :return: The decklist with given key
         """
         uri = "{}/decklist/{}.{}".format(self.base_url, key, self.format)
-        return self.session.get(uri)
+        return self._request(uri)
 
     def get_formats(self):
         """Gets all available competitive formats.
 
         See `format docs <https://swdestinydb.com/api/doc#get--api-public-formats->`_ for more details.
 
-        :return: The API response object 
+        :return: The list of available competitive formats
         """
         uri = "{}/formats/".format(self.base_url)
-        return self.session.get(uri)
+        return self._request(uri)
 
     def get_sets(self):
         """Gets all available sets.
 
         See `sets docs <https://swdestinydb.com/api/doc#get--api-public-sets->`_ for more details.
 
-        :return: The API response object
+        :return: The list of available card sets
         """
         params = {"_format": self.format}
         uri = "{}/sets/".format(self.base_url)
-        return self.session.get(uri, params=params)
+        return self._request(uri)
