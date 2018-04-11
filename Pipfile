@@ -10,6 +10,7 @@ name = "pypi"
 requests = "*"
 fuzzywuzzy = "*"
 python-levenshtein = "*"
+pytest-cov = "*"
 
 
 [dev-packages]
@@ -19,6 +20,7 @@ betamax = "*"
 sphinx = "*"
 sphinx-autobuild = "*"
 sphinx-rtd-theme = "*"
+pytest-cov = "*"
 
 
 [requires]
