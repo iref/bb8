@@ -8,6 +8,8 @@ name = "pypi"
 [packages]
 
 requests = "*"
+fuzzywuzzy = "*"
+python-levenshtein = "*"
 
 
 [dev-packages]
