@@ -36,6 +36,7 @@ this part of documentation is for you.
 .. toctree::
    :maxdepth: 2
 
+   fuzzy_search
    swdestinydb
 
 .. _developers:

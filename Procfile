@@ -1,1 +1,1 @@
-worker: python3 bb8/bot.py
+worker: python3 bb8.py
