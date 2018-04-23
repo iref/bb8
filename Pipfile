@@ -11,6 +11,9 @@ requests = "*"
 fuzzywuzzy = "*"
 python-levenshtein = "*"
 pytest-cov = "*"
+"discord.py" = "*"
+pytest-asyncio = "*"
+pytest-mock = "*"
 
 
 [dev-packages]
