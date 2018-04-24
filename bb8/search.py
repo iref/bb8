@@ -10,7 +10,7 @@ Example:
 """
 
 from bb8.swdestinydb import SWDestinyDBClient
-from fuzzywuzzy import process
+from fuzzywuzzy import process, fuzz
 
 
 class Search:
@@ -36,7 +36,11 @@ class Search:
         """
         cards = self.db_client.get_cards()
         card_index = {card["label"]: card for card in cards}
-        label, score = process.extractOne(text, card_index.keys())
+        label, score = process.extractOne(
+            text,
+            card_index.keys(),
+            scorer=fuzz.partial_ratio
+        )
 
         if score > 50:
             return card_index[label]
