@@ -35,7 +35,7 @@ def main():
     bot = BB8(
         extensions=['bb8.cogs'],
         search=search,
-        command_prefix="!", 
+        command_prefix="!",
         description="Provides useful commands for Star Wars Destiny fans."
     )
     bot.run(token)

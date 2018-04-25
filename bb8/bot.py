@@ -41,5 +41,3 @@ class BB8(commands.Bot):
         The callback for logging that commands are ready for use.
         """
         self.logger.info(f"Logged in as {self.user} with id {self.user.id}")
-
-

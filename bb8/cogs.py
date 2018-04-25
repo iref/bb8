@@ -28,7 +28,7 @@ class SWCardSearch:
     async def card(self, *, terms):
         """
         The command for searching card by given terms.
-        
+
         Format: <prefix>card [terms]
         Example: !card captain phasma
 
@@ -61,7 +61,8 @@ class SWCardSearch:
                 embed = CardImage(card).render()
                 await self.bot.send_message(message.channel, embed=embed)
             else:
-                await self.bot.send_message(message.channel, f"No card found. :(")
+                await self.bot.send_message(message.channel,
+                                            f"No card found. :(")
 
 
 def setup(bot):
