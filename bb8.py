@@ -33,7 +33,7 @@ def main():
 
     token = get_token()
     bot = BB8(
-        extensions=[],
+        extensions=['bb8.cogs'],
         search=search,
         command_prefix="!", 
         description="Provides useful commands for Star Wars Destiny fans."
