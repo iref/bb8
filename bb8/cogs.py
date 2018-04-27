@@ -2,7 +2,7 @@
 This module provides bot commands and event listeners.
 """
 from discord.ext import commands
-from .embed import CardImage
+from .embed import CardDetail, CardImage
 
 import re
 
@@ -24,8 +24,8 @@ class SWCardSearch:
     def __init__(self, bot):
         self.bot = bot
 
-    @commands.command(description="Search for card on Star Wars Destiny DB")
-    async def card(self, *, terms):
+    @commands.command(pass_context=True, description="Search for card on Star Wars Destiny DB")
+    async def card(self, ctx, *, terms):
         """
         The command for searching card by given terms.
 
@@ -35,10 +35,23 @@ class SWCardSearch:
         :param varargs terms: list of terms to look card by
         """
         card = self.bot.search.find_card(terms)
+        emojis = ctx.message.server.emojis
 
+        if card:
+            embed = CardDetail(card, emojis).render()
+            await self.bot.say(embed=embed)
+        else:
+            await self.bot.say("Card not found :(")
+
+    @commands.command(aliases=["cardi"], description="Search for card on Star Wars Destiny DB and show its image")
+    async def card_image(self, *, terms):
+        card = self.bot.search.find_card(terms)
+        
         if card:
             embed = CardImage(card).render()
             await self.bot.say(embed=embed)
+        else:
+            await self.bot.say("Card not found :(")
 
     async def on_message(self, message):
         """
@@ -55,10 +68,19 @@ class SWCardSearch:
 
         queries = set(re.findall(SWCardSearch.PATTERN, message.content))
         for query in queries:
+            show_only_image = False
+            if query.startswith("!"):
+                query = query[1:]
+                show_only_image = True
+
             card = self.bot.search.find_card(query)
 
             if card:
-                embed = CardImage(card).render()
+                if show_only_image:
+                    embed = CardImage(card).render()
+                else:
+                    emojis = message.server.emojis
+                    embed = CardDetail(card, emojis).render()
                 await self.bot.send_message(message.channel, embed=embed)
             else:
                 await self.bot.send_message(message.channel,
