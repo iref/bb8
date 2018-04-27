@@ -30,7 +30,6 @@ pages:
 deploy:
   stage: deploy
   script:
-    - gem install dpl
-    - dpl --provider=heroku --app=bb8-bot --api_key=$HEROKU_API_KEY
+    - sh ./scripts/deploy
   only:
     - master
