@@ -35,8 +35,8 @@ class SWDestinyDBClient:
         self.format = format
         self.session = session or requests.Session()
 
-    def _request(self, uri):
-        response = self.session.get(uri)
+    def _request(self, uri, params=None):
+        response = self.session.get(uri, params=params)
         response.raise_for_status()
         if self.format == "json":
             return response.json()
