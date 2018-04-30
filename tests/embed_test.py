@@ -19,7 +19,8 @@ def test_renders_card_image():
     card = {
         "label": "Captain Phasma",
         "url": "https://swdestinydb.com/cards/10001",
-        "imagesrc": "https://swdestinydb.com/cards/10001.png"
+        "imagesrc": "https://swdestinydb.com/cards/10001.png",
+        "faction_code": "red"
     }
     card_image = CardImage(card)
 
@@ -28,6 +29,8 @@ def test_renders_card_image():
     assert embed.title == card["label"]
     assert embed.url == card["url"]
     assert embed.image.url == card["imagesrc"]
+    assert embed.colour.value == CardEmbed.FACTION_COLOURS["red"]
+
 
 def test_renders_proper_colour_in_detail():
     card = {
