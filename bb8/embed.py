@@ -24,7 +24,8 @@ class CardEmbed:
         self.embed = Embed(
             type="rich",
             title=card["label"],
-            url=card["url"]
+            url=card["url"],
+            colour=self.colour()
         )
 
     def colour(self):
@@ -242,7 +243,6 @@ class CardDetail(CardEmbed):
             name=self.type_line(),
             value=self.text_line()
         )
-        self.embed.colour = self.colour()
         self.embed.set_footer(text=self.footer_line())
         self.embed.set_thumbnail(url=self.card["imagesrc"])
 
