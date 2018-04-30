@@ -6,11 +6,12 @@ At the moment, it only supports public endpoints.
 
 Example:
     A short usage example of getting card by its key::
-    
+
         $ client = SWDestinyClient()
         $ client.get_card("01001")
 """
 import requests
+
 
 class UnsupportedFormat(Exception):
     """The exception thrown if requested format is not supported by client."""
@@ -22,11 +23,11 @@ class SWDestinyDBClient:
 
     Supports only publicly available endpoints.
     See `official docs <https://swdestinydb.com/api/docs>`_ for more details.
-    
-    :param str base_url: The url where api resources can be found. 
+
+    :param str base_url: The url where api resources can be found.
                          (default: https://swdestinydb.com/api/public)
     :param str format:  The expected output format. (default: json)
-    :param obj session: The HTTP session to communicate with API 
+    :param obj session: The HTTP session to communicate with API
                         (default: requests.Session())
     """
 
@@ -41,7 +42,9 @@ class SWDestinyDBClient:
         if self.format == "json":
             return response.json()
         else:
-            raise UnsupportedFormat("Format: {} is not supported.".format(self.format))
+            raise UnsupportedFormat(
+                "Format {} is not supported.".format(self.format)
+            )
 
     def get_card(self, key):
         """Gets card with given key.
@@ -54,14 +57,15 @@ class SWDestinyDBClient:
         """
         uri = "{}/card/{}.{}".format(self.base_url, key, self.format)
         return self._request(uri)
-    
+
     def get_cards(self, set_code=None):
         """Gets all cards.
 
         If `set_code` is provided, it only returns cards from given set.
         See `cards docs <https://swdestinydb.com/api/doc#get--api-public-cards->`_ for more details.
 
-        :param str set_code: The code of set cards should be from, e.g 'AW'. (default: None)
+        :param str set_code: The code of set cards should be from, e.g 'AW'.
+                             (default: None)
         :return: The list of found cards
         :rtype: list(dict)
         """
@@ -102,4 +106,4 @@ class SWDestinyDBClient:
         """
         params = {"_format": self.format}
         uri = "{}/sets/".format(self.base_url)
-        return self._request(uri)
+        return self._request(uri, params=params)

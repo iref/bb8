@@ -17,7 +17,8 @@ class Search:
     """
     Searches for Star Wars Destiny cards based on their label.
 
-    :param obj db_client: The client to get cards from datastore. (default: SWDestinyDBClient)
+    :param obj db_client: The client to get cards from datastore.
+                          (default: SWDestinyDBClient)
     """
 
     def __init__(self, db_client=None):

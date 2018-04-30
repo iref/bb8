@@ -9,17 +9,20 @@ name = "pypi"
 
 requests = "*"
 fuzzywuzzy = "*"
-python-levenshtein = "*"
+python-Levenshtein = "*"
 pytest-cov = "*"
+"discord.py" = "*"
+pytest-asyncio = "*"
+pytest-mock = "*"
 
 
 [dev-packages]
 
 pytest = "*"
 betamax = "*"
-sphinx = "*"
+Sphinx = "*"
 sphinx-autobuild = "*"
-sphinx-rtd-theme = "*"
+sphinx_rtd_theme = "*"
 pytest-cov = "*"
 
 
