@@ -1,12 +1,9 @@
 [[source]]
-
 url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
-
 [packages]
-
 requests = "*"
 fuzzywuzzy = "*"
 python-Levenshtein = "*"
@@ -15,17 +12,14 @@ pytest-cov = "*"
 pytest-asyncio = "*"
 pytest-mock = "*"
 
-
 [dev-packages]
-
 pytest = "*"
 betamax = "*"
 Sphinx = "*"
 sphinx-autobuild = "*"
 sphinx_rtd_theme = "*"
 pytest-cov = "*"
-
+codecov = "*"
 
 [requires]
-
 python_version = "3.6"

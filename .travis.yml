@@ -1,9 +1,17 @@
 language: python
 python:
-  - "3.6"
+  - '3.6'
 before_install:
   - pip install pipenv
 install:
   - pipenv install --dev
 script:
   - pipenv run pytest --cov=./ tests/
+  - cd docs && pipenv run make html
+after_script:
+  - codecov
+deploy:
+  provider: heroku
+  app: bb8-discord
+  api_key:
+    secure: pMv66Tuj7kuzU1E2ADRRjmD+Y4lf8x1a0plj2ACJxLXKMgNaJI1Y5rXiaRXIUDTpb0pK7jwiDtoN9cUmMALZrq3wK8CyVNz51NUk6ehGlJnsEVF4rB+XL/0u6AtOX+MT0EwaGvEHCbd97rVA0iLBwcatJKv4bG1Eax5M+arWo+pmCD8XpFftTHTxX2RNuxRg/FeLTwpnZ2zMRlJwKDWiGfA4ILP4OByjPs301cWFYphACIzltc1vS+d2AMYpd2hdG7NlTMXcy8pCh9IQnFw1eXXLjV+sQamfETkPEl+N+zEhXoQCX6jo3ePRfiqHZAaoUMnFCqID5CzSTaAbgNF/z8eAf7i2yUQT5JTHRZSfjWxtBTS/5Tq2RzS2o62UbdLDL58SDZJMUuIM16bDcm3Uy3oQb86ptfQ/FLDV6mzsxf1UfwT7dG2a0dVcaQdZMLYN8dvUh8jvRsZnN65nKR/fNir1/wv0D72K37grmYQR9U6siyUAGRzwe9dmqWrDiDQSu7ubgGK344680HPPh3rQNd83mpOi5wbPzANSZguHxSFmtUOqo7GDDkKLqHMbVwDUsiNAGdLw/lt9+x3+yyFmR2FGwbGFhMa8ElIRYGRNBejc8sFHN0+ZJOL2G/0fef+KYiSWGsNjSbaqoRrFlpqG/7ilGj2H2dygh6StbDl1ZDo=
