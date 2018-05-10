@@ -12,6 +12,8 @@ Example:
 """
 import requests
 
+from bb8 import cache
+
 
 class UnsupportedFormat(Exception):
     """The exception thrown if requested format is not supported by client."""
@@ -58,6 +60,7 @@ class SWDestinyDBClient:
         uri = "{}/card/{}.{}".format(self.base_url, key, self.format)
         return self._request(uri)
 
+    @cache.cache('get_cards', expire=60 * 60 * 24)
     def get_cards(self, set_code=None):
         """Gets all cards.
 

@@ -6,18 +6,20 @@ name = "pypi"
 [packages]
 requests = "*"
 fuzzywuzzy = "*"
-python-Levenshtein = "*"
+python-levenshtein = "*"
 pytest-cov = "*"
 "discord.py" = "*"
 pytest-asyncio = "*"
 pytest-mock = "*"
+beaker = "*"
+cachecontrol = "*"
 
 [dev-packages]
 pytest = "*"
 betamax = "*"
-Sphinx = "*"
+sphinx = "*"
 sphinx-autobuild = "*"
-sphinx_rtd_theme = "*"
+sphinx-rtd-theme = "*"
 pytest-cov = "*"
 codecov = "*"
 

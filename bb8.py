@@ -1,12 +1,7 @@
-from bb8.bot import BB8
-from bb8.search import Search
-from bb8.swdestinydb import SWDestinyDBClient
+from bb8 import bot
 
 import logging
 import os
-
-db_client = SWDestinyDBClient()
-search = Search(db_client)
 
 
 def setup_logging():
@@ -30,14 +25,7 @@ def get_token():
 
 def main():
     setup_logging()
-
     token = get_token()
-    bot = BB8(
-        extensions=['bb8.cogs'],
-        search=search,
-        command_prefix="!",
-        description="Provides useful commands for Star Wars Destiny fans."
-    )
     bot.run(token)
 
 
