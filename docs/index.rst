@@ -36,11 +36,7 @@ this part of documentation is for you.
 .. toctree::
    :maxdepth: 2
 
-   bot
-   cogs
-   embed
-   fuzzy_search
-   swdestinydb
+   api
 
 .. _developers:
 
