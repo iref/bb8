@@ -6,7 +6,7 @@ before_install:
 install:
   - pipenv install --dev
 script:
-  - pipenv run pytest --cov=./ tests/
+  - pipenv run pytest --cov=./bb8/ tests/
 after_script:
   - codecov
 deploy:
