@@ -5,7 +5,7 @@ async-timeout==2.0.1
 attrs==17.4.0
 Babel==2.5.3
 betamax==0.8.1
-certifi==2018.4.16
+certifi==2022.12.7
 chardet==3.0.4
 codecov==2.0.15
 coverage==4.5.1
